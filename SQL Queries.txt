@@ -1,0 +1,44 @@
+create schema reward;
+
+use reward;
+
+create table customer(
+	customer_id integer primary key auto_increment,
+    customer_name VARCHAR(100) NOT NULL,
+	email varchar(255) NOT NULL UNIQUE,
+	phone varchar(20) UNIQUE,
+	is_active varchar(1) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+	creation_date date,
+	last_updated date
+);
+
+
+create table customer_transaction(
+	transaction_id integer primary key auto_increment,
+    customer_id integer NOT NULL ,
+	spent_details varchar(255),
+	amount double,
+    transaction_date date,
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE
+);
+
+
+create table reward_points(
+	reward_id integer primary key auto_increment,
+    customer_id integer NOT NULL ,
+	month varchar(10),
+	year varchar(4),
+    transaction_date date,
+    points integer,
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE
+);
+
+
+create table customer_tokens(
+	token_id bigint primary key auto_increment,
+    email varchar(100) NOT NULL,
+    token text  NOT NULL,
+    created_date TIMESTAMP DEFAULT current_timestamp,
+    expire_date TIMESTAMP NOT NULL
+);
