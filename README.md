@@ -23,4 +23,3 @@
 <li><b>Get 3-month reward points: </b>Retrieve reward points for a 3-month period.</li>
 <li><b>Get all-month reward points : </b>Retrieve all the reward points for a customer.</li>
 </ul>
-has context menu# RewardPoints
