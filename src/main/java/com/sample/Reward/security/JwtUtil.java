@@ -21,7 +21,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 	
-/**
+	/**
 	 * 
 	 * Utility class for  generating and validating JWT tokens.
 	 *
@@ -74,12 +74,8 @@ public class JwtUtil {
 	public boolean isTokenValid(String token) {
 		
 		try {
-			System.out.println("token === " + token);
 			Optional<CustomerTokens> customerToken = tokenService.findByToken(token);
-			System.out.println(customerToken.get().getEmail());
 			Jwts.parser().setSigningKey(secretKey).build().parseClaimsJws(token);
-			//return customerToken.isPresent();
-			//return tokenService.findByToken(token).filter(t -> t.getExpireDate().isAfter(LocalDateTime.now())).isPresent();
 			return true;
 		}
 		catch(JwtException | IllegalArgumentException e){
