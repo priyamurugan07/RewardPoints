@@ -70,14 +70,14 @@ public class CustomerTransactionSeriveImpl implements CustomerTransactionService
 		Optional<CustomerTransaction> optCustomerTransaction = customerTransactionRepository.findById(transactionId);
 		
 		CustomerTransactionDTO transactionResponse = new CustomerTransactionDTO();
-		if(optCustomerTrans.isPresent()) {
+		if(optCustomerTransaction.isPresent()) {
 			
 			CustomerTransaction customerTransaction = optCustomerTransaction.get();
-			response.setTransactionId(customerTransaction.getTransactionId());
-			response.setCustomerId(customerTransaction.getCustomer().getCustomerId());
-			response.setSpentDetails(customerTransaction.getSpentDetails());
-			response.setAmount(customerTransaction.getAmount());
-			response.setTransactionDate(customerTransaction.getTransactionDate());
+			transactionResponse.setTransactionId(customerTransaction.getTransactionId());
+			transactionResponse.setCustomerId(customerTransaction.getCustomer().getCustomerId());
+			transactionResponse.setSpentDetails(customerTransaction.getSpentDetails());
+			transactionResponse.setAmount(customerTransaction.getAmount());
+			transactionResponse.setTransactionDate(customerTransaction.getTransactionDate());
 		}
 		else {
 			throw new RewardException("TransactionId not found");
@@ -104,8 +104,8 @@ public class CustomerTransactionSeriveImpl implements CustomerTransactionService
 			throw new RewardException("CustomerId not found");
 		}
 		if(optCustomerTransaction.isPresent()) {
-			CustomerTransaction customerTrans = optCustomerTrans.get();
-			customerTrans.setCustomer(optCust.get());
+			CustomerTransaction customerTrans = optCustomerTransaction.get();
+			customerTrans.setCustomer(optCustomer.get());
 			customerTrans.setSpentDetails(transactionRequestDTO.getSpentDetails());
 			customerTrans.setAmount(transactionRequestDTO.getAmount());
 			customerTrans.setTransactionDate(LocalDate.now());
