@@ -13,6 +13,4 @@ public interface TokenService {
 	Optional<CustomerTokens> findByToken(String token);
 
 	BaseResponseDTO revokeToken(String token);
-
-	void revokeAllTokenForCustomer(String email);
 }
