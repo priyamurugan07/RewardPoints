@@ -47,11 +47,12 @@ public class TokenServiceImpl implements TokenService {
 		if(optTokens.isPresent()) {
 		  tokenRepository.deleteById(optTokens.get().getTokenId());
 		}
-			CustomerTokens customerTokens = new CustomerTokens();
-			customerTokens.setEmail(email);
-			customerTokens.setToken(token);
-			customerTokens.setCreatedDate(LocalDateTime.now());
-			customerTokens.setExpireDate(expireDate);
+		
+		CustomerTokens customerTokens = new CustomerTokens();
+		customerTokens.setEmail(email);
+		customerTokens.setToken(token);
+		customerTokens.setCreatedDate(LocalDateTime.now());
+		customerTokens.setExpireDate(expireDate);
 		
 		tokenRepository.save(customerTokens);
 	}
@@ -76,6 +77,7 @@ public class TokenServiceImpl implements TokenService {
 	 */
 	@Override
 	public BaseResponseDTO revokeToken(String token) {
+		
 		Optional<CustomerTokens> optTokens = tokenRepository.findByToken(token);
 		if(optTokens.isPresent()) {
 		  tokenRepository.deleteById(optTokens.get().getTokenId());
