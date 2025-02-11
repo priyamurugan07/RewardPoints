@@ -32,47 +32,43 @@ public class CustomerTransactionControllerTest {
 	@MockitoBean
 	CustomerTransactionService customerTransactionService;
 	
-	  @Test
-	  void createTransactionTest() throws Exception {
-	  
-	  when(customerTransactionService.createTransaction(any())).thenReturn(new BaseResponseDTO());
-	  ResponseEntity<BaseResponseDTO> response =customerTransactionController.createTransaction(any());
-	  assertNotNull(response);
-	  assertEquals(HttpStatus.CREATED,response.getStatusCode());
+	@Test
+	void createTransactionTest() throws Exception {
+	  	when(customerTransactionService.createTransaction(any())).thenReturn(new BaseResponseDTO());
+	  	ResponseEntity<BaseResponseDTO> response =customerTransactionController.createTransaction(any());
+	  	assertNotNull(response);
+	  	assertEquals(HttpStatus.CREATED,response.getStatusCode());
 	  }
 	  
 	  @Test
 	  void getTransactionByIdTest() throws Exception {
+	  	CustomerTransactionDTO mockData = new CustomerTransactionDTO();
+	  	mockData.setCustomerId(1);
+	  	mockData.setSpentDetails("Bag");
+	  	mockData.setAmount(200);
+	 	mockData.setTransactionDate(LocalDate.of(2025,01,12));
 	  
-	  CustomerTransactionDTO mockData = new CustomerTransactionDTO();
-	  mockData.setCustomerId(1);
-	  mockData.setSpentDetails("Bag");
-	  mockData.setAmount(200);
-	  mockData.setTransactionDate(LocalDate.of(2025,01,12));
+	  	when(customerTransactionService.getTransactionById(anyInt())).thenReturn(mockData);
 	  
-	  when(customerTransactionService.getTransactionById(anyInt())).thenReturn(mockData);
-	  
-	  ResponseEntity<CustomerTransactionDTO> response =customerTransactionController.getTransactionById(anyInt());
-	  assertNotNull(response);
-	  assertEquals(HttpStatus.OK,response.getStatusCode());
+	  	ResponseEntity<CustomerTransactionDTO> response =customerTransactionController.getTransactionById(anyInt());
+	  	assertNotNull(response);
+	  	assertEquals(HttpStatus.OK,response.getStatusCode());
 	  }
 	  
 	  @Test
 	  void updateTransactionTest() throws Exception {
-	  
-	  when(customerTransactionService.updateTransaction(anyInt(),any())).thenReturn(new BaseResponseDTO());
-	  ResponseEntity<BaseResponseDTO> response =customerTransactionController.updateTransaction(anyInt(),any());
-	  assertNotNull(response);
-	  assertEquals(HttpStatus.OK,response.getStatusCode());
+		  when(customerTransactionService.updateTransaction(anyInt(),any())).thenReturn(new BaseResponseDTO());
+		  ResponseEntity<BaseResponseDTO> response =customerTransactionController.updateTransaction(anyInt(),any());
+		  assertNotNull(response);
+		  assertEquals(HttpStatus.OK,response.getStatusCode());
 	  }
 	  
 	  @Test
 	  void deleteTransactionTest() throws Exception {
-	  
-	  when(customerTransactionService.deleteTransaction(anyInt())).thenReturn(new BaseResponseDTO());
-	  ResponseEntity<BaseResponseDTO> response =customerTransactionController.deleteTransaction(anyInt());
-	  assertNotNull(response);
-	  assertEquals(HttpStatus.OK,response.getStatusCode());
+		  when(customerTransactionService.deleteTransaction(anyInt())).thenReturn(new BaseResponseDTO());
+		  ResponseEntity<BaseResponseDTO> response =customerTransactionController.deleteTransaction(anyInt());
+		  assertNotNull(response);
+		  assertEquals(HttpStatus.OK,response.getStatusCode());
 	  }
 
 }
