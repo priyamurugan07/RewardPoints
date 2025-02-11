@@ -7,7 +7,6 @@ public class CustomerDTO {
 	private String phone;
 	private String password;
 	
-	
 	public String getCustomerName() {
 		return customerName;
 	}
