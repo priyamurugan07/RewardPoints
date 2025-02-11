@@ -47,9 +47,8 @@ public class RewardServiceImpl implements RewardService{
 		LocalDate startDate = LocalDate.now().minusMonths(3);
 		LocalDate endDate = LocalDate.now();
         
-        List<CustomerTransaction> customerTransaction = customerTransactionRepository.findByCustomerCustomerIdAndTransactionDateBetween(customerId, startDate, endDate);
-		
-        return calculateRewardPoint(customerTransaction);
+       	 	List<CustomerTransaction> customerTransaction = customerTransactionRepository.findByCustomerCustomerIdAndTransactionDateBetween(customerId, startDate, endDate);
+		return calculateRewardPoint(customerTransaction);
 	}
 	
 	/**
@@ -61,8 +60,8 @@ public class RewardServiceImpl implements RewardService{
 	 */
 	@Override
 	public RPListDTO calculateAllMonthRewardPoints(Integer customerId) throws RewardException {
-		List<CustomerTransaction> customerTransaction = customerTransactionRepository.findAllByCustomerCustomerId(customerId);
 		
+		List<CustomerTransaction> customerTransaction = customerTransactionRepository.findAllByCustomerCustomerId(customerId);
 		return calculateRewardPoint(customerTransaction);
 		
 	}
@@ -96,8 +95,8 @@ public class RewardServiceImpl implements RewardService{
 				points += (amount-minRewardAmount);
 			}
 			
-		map.put(month +" " + year, map.getOrDefault(month + " " + year, 0)+points);
-		totalpoints += points;
+			map.put(month +" " + year, map.getOrDefault(month + " " + year, 0)+points);
+			totalpoints += points;
 		}
 		RPListDTO responseDto = new RPListDTO();
 		responseDto.setStatus("success");
