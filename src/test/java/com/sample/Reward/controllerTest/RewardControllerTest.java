@@ -28,24 +28,22 @@ public class RewardControllerTest {
 	@MockitoBean
 	RewardService rewardService;
 
-	  @Test
-	  void calculateRewardPointsTest() throws Exception {
-	  
-	  RPListDTO mockData = new RPListDTO();
-	  when(rewardService.calculateThreeMonthsRewardPoints(anyInt())).thenReturn(mockData);
-	  ResponseEntity<RPListDTO> response =rewardController.calculateThreeMonthsRewardPoints(anyInt());
-	  assertNotNull(response);
-	  assertEquals(HttpStatus.OK,response.getStatusCode());
-	  }
+	@Test
+	void calculateRewardPointsTest() throws Exception {
+	  	  RPListDTO mockData = new RPListDTO();
+		  when(rewardService.calculateThreeMonthsRewardPoints(anyInt())).thenReturn(mockData);
+		  ResponseEntity<RPListDTO> response =rewardController.calculateThreeMonthsRewardPoints(anyInt());
+		  assertNotNull(response);
+		  assertEquals(HttpStatus.OK,response.getStatusCode());
+	}
 	  
 	  @Test
 	  void calculateAllMonthRewardPointsTest() throws Exception {
-	  
-	  RPListDTO mockData = new RPListDTO();
-	  when(rewardService.calculateAllMonthRewardPoints(anyInt())).thenReturn(mockData);
-	  ResponseEntity<RPListDTO> response =rewardController.calculateAllMonthRewardPoints(anyInt());
-	  assertNotNull(response);
-	  assertEquals(HttpStatus.OK,response.getStatusCode());
+		  RPListDTO mockData = new RPListDTO();
+		  when(rewardService.calculateAllMonthRewardPoints(anyInt())).thenReturn(mockData);
+		  ResponseEntity<RPListDTO> response =rewardController.calculateAllMonthRewardPoints(anyInt());
+		  assertNotNull(response);
+		  assertEquals(HttpStatus.OK,response.getStatusCode());
 	  }
 	 
 	 
