@@ -5,8 +5,6 @@ public class TransactionRequestDTO {
 	private int customerId ;
 	private String spentDetails;
 	private double amount;
-	
-	
 
 	public int getCustomerId() {
 		return customerId;
