@@ -48,9 +48,9 @@ public class CustomerServiceImpl implements CustomerService{
 	public BaseResponseDTO registerCustomer(CustomerDTO customerDTO) throws RewardException{
 		
 		//Find the customer by email from the database
-		Optional<Customer> cust = customerRepository.findByEmail(customerDTO.getEmail());
+		Optional<Customer> optCustomer = customerRepository.findByEmail(customerDTO.getEmail());
 		
-		if(cust.isPresent()) {
+		if(optCustomer.isPresent()) {
 			throw new RewardException("Email Already Exists");
 		}
 		
@@ -95,11 +95,9 @@ public class CustomerServiceImpl implements CustomerService{
 			}
 			String token =jwtUtil.generateToken(loginRequestDTO.getEmail());
 			
-			System.out.println("token === " + token);
-			
-			LoginResponseDTO responseDTO = new LoginResponseDTO();
-			responseDTO.setJwt(token);
-			return responseDTO;
+			LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
+			loginResponseDTO.setJwt(token);
+			return loginResponseDTO;
 		}
 		else
 			throw new RewardException ("Invalid Credentials");
