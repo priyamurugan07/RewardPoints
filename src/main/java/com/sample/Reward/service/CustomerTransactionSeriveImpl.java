@@ -40,15 +40,15 @@ public class CustomerTransactionSeriveImpl implements CustomerTransactionService
 	@Override
 	public BaseResponseDTO createTransaction(TransactionRequestDTO transactionRequestDTO) throws RewardException{
 		
-		Optional<Customer> optCust=customerRepository.findById(transactionRequestDTO.getCustomerId());
-		if(optCust.isPresent()) {
-		CustomerTransaction customerTransaction = new CustomerTransaction();
-		customerTransaction.setCustomer(optCust.get());
-		customerTransaction.setSpentDetails(transactionRequestDTO.getSpentDetails());
-		customerTransaction.setAmount(transactionRequestDTO.getAmount());
-		customerTransaction.setTransactionDate(LocalDate.now());
+		Optional<Customer> optCustomer = customerRepository.findById(transactionRequestDTO.getCustomerId());
+		if(optCustomer.isPresent()) {
+			CustomerTransaction customerTransaction = new CustomerTransaction();
+			customerTransaction.setCustomer(optCustomer.get());
+			customerTransaction.setSpentDetails(transactionRequestDTO.getSpentDetails());
+			customerTransaction.setAmount(transactionRequestDTO.getAmount());
+			customerTransaction.setTransactionDate(LocalDate.now());
 		
-		customerTransactionRepository.save(customerTransaction);
+			customerTransactionRepository.save(customerTransaction);
 		}
 		else {
 			throw new RewardException("CustomerId not found");
@@ -67,21 +67,22 @@ public class CustomerTransactionSeriveImpl implements CustomerTransactionService
 	@Override
 	public CustomerTransactionDTO getTransactionById(int transactionId) throws RewardException {
 		
-		Optional<CustomerTransaction> optCustomerTrans = customerTransactionRepository.findById(transactionId);
+		Optional<CustomerTransaction> optCustomerTransaction = customerTransactionRepository.findById(transactionId);
 		
-		CustomerTransactionDTO response = new CustomerTransactionDTO();
+		CustomerTransactionDTO transactionResponse = new CustomerTransactionDTO();
 		if(optCustomerTrans.isPresent()) {
-			CustomerTransaction customerTrans = optCustomerTrans.get();
-			response.setTransactionId(customerTrans.getTransactionId());
-			response.setCustomerId(customerTrans.getCustomer().getCustomerId());
-			response.setSpentDetails(customerTrans.getSpentDetails());
-			response.setAmount(customerTrans.getAmount());
-			response.setTransactionDate(customerTrans.getTransactionDate());
+			
+			CustomerTransaction customerTransaction = optCustomerTransaction.get();
+			response.setTransactionId(customerTransaction.getTransactionId());
+			response.setCustomerId(customerTransaction.getCustomer().getCustomerId());
+			response.setSpentDetails(customerTransaction.getSpentDetails());
+			response.setAmount(customerTransaction.getAmount());
+			response.setTransactionDate(customerTransaction.getTransactionDate());
 		}
 		else {
 			throw new RewardException("TransactionId not found");
 		}
-		return response;
+		return transactionResponse;
 	}
 	
 	/**
@@ -96,13 +97,13 @@ public class CustomerTransactionSeriveImpl implements CustomerTransactionService
 	@Override
 	public BaseResponseDTO updateTransaction(Integer transactionId,TransactionRequestDTO transactionRequestDTO) throws RewardException {
 		
-		Optional<CustomerTransaction> optCustomerTrans = customerTransactionRepository.findById(transactionId);
+		Optional<CustomerTransaction> optCustomerTransaction = customerTransactionRepository.findById(transactionId);
 
-		Optional<Customer> optCust=customerRepository.findById(transactionRequestDTO.getCustomerId());
-		if(optCust.isEmpty()) {
+		Optional<Customer> optCustomer = customerRepository.findById(transactionRequestDTO.getCustomerId());
+		if(optCustomer.isEmpty()) {
 			throw new RewardException("CustomerId not found");
 		}
-		if(optCustomerTrans.isPresent()) {
+		if(optCustomerTransaction.isPresent()) {
 			CustomerTransaction customerTrans = optCustomerTrans.get();
 			customerTrans.setCustomer(optCust.get());
 			customerTrans.setSpentDetails(transactionRequestDTO.getSpentDetails());
@@ -130,7 +131,7 @@ public class CustomerTransactionSeriveImpl implements CustomerTransactionService
 		Optional<CustomerTransaction> optCustomerTrans = customerTransactionRepository.findById(transactionId);
 		
 		if(optCustomerTrans.isPresent()) {
-		 customerTransactionRepository.deleteById(transactionId);
+			customerTransactionRepository.deleteById(transactionId);
 		}
 		else {
 			throw new RewardException("TransactionId not found");
