@@ -22,9 +22,10 @@ import com.sample.Reward.service.CustomerService;
 @EnableWebSecurity
 public class SecurityConfig {
 	
-	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	@Autowired
 	private CustomerService customerService;
+
+	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	
 	public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
 		this.jwtAuthenticationFilter = jwtAuthenticationFilter;
@@ -47,7 +48,7 @@ public class SecurityConfig {
 	
 
 	@Bean
-		public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
-			return configuration.getAuthenticationManager();
-		}
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
+		return configuration.getAuthenticationManager();
+	}
 }
