@@ -7,6 +7,7 @@ public class RPListDTO {
 	private String status;
 	private Map<String, Integer> rewardPoints;
 	private int totalPoints;
+	
 	public String getStatus() {
 		return status;
 	}
