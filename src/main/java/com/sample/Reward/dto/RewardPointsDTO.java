@@ -7,7 +7,6 @@ public class RewardPointsDTO {
 	private String year;
 	private int points;
 	
-	
 	public int getCustomerId() {
 		return customerId;
 	}
