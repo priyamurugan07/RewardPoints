@@ -83,17 +83,6 @@ public class TokenServiceImpl implements TokenService {
 		  tokenRepository.deleteById(optTokens.get().getTokenId());
 		}
 		return new BaseResponseDTO("Logged Out Successfully");
-	}
-	
-	/**
-	 * Revokes all the tokens associated with email.
-	 * 
-	 * @param email  email whose token should be deleted.
-	 */
-	@Override
-	public void revokeAllTokenForCustomer(String email) {
-		tokenRepository.deleteByEmail(email);
-	}
-	
+	}	
 
 }
