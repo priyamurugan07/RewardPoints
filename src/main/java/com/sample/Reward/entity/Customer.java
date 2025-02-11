@@ -38,14 +38,6 @@ public class Customer {
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<CustomerTransaction> customerTransaction;
-	
-
-	
-//	@Column(name = "creation_date")
-//	private LocalDate creationDate;
-//	
-//	@Column(name = "last_updated")
-//	private LocalDate lastUpdated;
 
 	public int getCustomerId() {
 		return customerId;
