@@ -8,7 +8,6 @@ import com.sample.Reward.entity.CustomerTokens;
 
 public interface TokenService {
 
-
 	void saveToken(String email, String token, LocalDateTime expireDate);
 	
 	Optional<CustomerTokens> findByToken(String token);
