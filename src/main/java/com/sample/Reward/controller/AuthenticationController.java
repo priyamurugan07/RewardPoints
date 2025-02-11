@@ -48,7 +48,6 @@ public class AuthenticationController {
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<BaseResponseDTO> registerCustomer(@RequestBody CustomerDTO customerDTO)throws RewardException{
-		System.out.println("hi");
 		return new ResponseEntity<>(customerService.registerCustomer(customerDTO),HttpStatus.CREATED);
 	}
 
