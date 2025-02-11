@@ -30,7 +30,7 @@ import com.sample.Reward.service.RewardServiceImpl;
 public class RewardServiceTest {
 
 	@MockitoBean
-    CustomerTransactionRepository customerTransactionRepository;
+        CustomerTransactionRepository customerTransactionRepository;
 	
 	@InjectMocks
 	RewardServiceImpl rewardServiceImpl;
