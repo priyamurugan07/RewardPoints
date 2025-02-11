@@ -28,7 +28,7 @@ import com.sample.Reward.service.CustomerTransactionSeriveImpl;
 public class CustomerTransactionServiceTest {
 
 	@MockitoBean
-    CustomerTransactionRepository customerTransactionRepository;
+        CustomerTransactionRepository customerTransactionRepository;
 	
 	@InjectMocks
 	CustomerTransactionSeriveImpl customerTransactionSeriveImpl;
@@ -85,7 +85,7 @@ public class CustomerTransactionServiceTest {
 	}
 	
 	@Test
-    void updateTransaction() throws RewardException{
+        void updateTransaction() throws RewardException{
 		
 		CustomerTransaction customerTransaction = new CustomerTransaction();
 		Customer customer = new Customer();
